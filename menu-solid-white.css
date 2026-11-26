@@ -1,0 +1,35 @@
+/* Solid white background for the selected product image. */
+
+.menu-page .menu-product.is-expanded {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+.menu-page .menu-product.is-expanded .menu-product-image {
+  background: #ffffff !important;
+  background-image: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 32px !important;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 20%) !important;
+  transform: none !important;
+  color-scheme: only light;
+}
+
+.menu-page .menu-product.is-expanded .menu-product-name,
+.menu-page .menu-product.is-expanded .menu-inline-details {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+@media (max-width: 650px) {
+  .menu-page .menu-product.is-expanded .menu-product-image {
+    border-radius: 24px !important;
+  }
+}

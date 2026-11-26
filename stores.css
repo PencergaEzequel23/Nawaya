@@ -1,0 +1,332 @@
+/* Shared typography, header and footer come from styles.css. */
+
+.stores-page {
+  background: #131412;
+  color: #fff;
+}
+
+.stores-page .site-header {
+  position: relative;
+  z-index: 10;
+}
+
+.stores-page .site-header a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* Keyboard navigation */
+
+.stores-skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px 18px;
+  background: #fff;
+  color: #141311;
+  border-radius: 8px;
+  transform: translateY(-160%);
+}
+
+.stores-skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Hero */
+
+.stores-hero {
+  position: relative;
+  display: grid;
+  place-items: start center;
+  min-height: 571px;
+  isolation: isolate;
+  text-align: center;
+
+  background:
+    url("assets/stores/store-banner.png")
+    center / cover
+    no-repeat;
+}
+
+.stores-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgb(0 0 0 / 30%),
+      rgb(0 0 0 / 14%) 55%,
+      rgb(0 0 0 / 35%)
+    );
+}
+
+.stores-hero-content {
+  width: min(100% - 40px, 650px);
+  padding-top: 115px;
+  padding-bottom: 80px;
+}
+
+.stores-hero h1 {
+  margin: 0;
+  font-size: clamp(52px, 6.7vw, 96px);
+  line-height: 1;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.stores-hero p {
+  max-width: 520px;
+  margin: 20px auto 0;
+  font-size: 24px;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+/* Announcement strip */
+
+.stores-announcement {
+  display: grid;
+  place-items: center;
+  min-height: 106px;
+  padding: 22px 24px;
+  border-top: 1px solid rgb(255 255 255 / 15%);
+  border-bottom: 1px solid rgb(255 255 255 / 15%);
+  text-align: center;
+}
+
+.stores-announcement p {
+  font-size: clamp(22px, 3.48vw, 50px);
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+/* Directory */
+
+.stores-directory {
+  padding: 70px 24px 149px;
+}
+
+.stores-directory > h2 {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(36px, 4.45vw, 64px);
+  line-height: 1.15;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.stores-directory-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  align-items: start;
+  gap: 26px;
+  max-width: 1106px;
+  margin: 120px auto 0;
+}
+
+.stores-card-list {
+  display: grid;
+  gap: 67px;
+}
+
+/* Location cards */
+
+.stores-location-card {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+
+  min-height: 236px;
+  padding: 22px;
+
+  border: 1px solid rgb(255 255 255 / 58%);
+  border-radius: 36px;
+  background: transparent;
+
+  scroll-margin-top: 30px;
+}
+
+.stores-location-photo {
+  display: block;
+  width: 200px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 23px;
+  background: #f5f3ed;
+}
+
+.stores-location-details {
+  min-width: 0;
+}
+
+.stores-location-details h3 {
+  margin: 0 0 16px;
+  font-size: 30px;
+  line-height: 1.04;
+  font-weight: 500;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.stores-info-row {
+  display: grid;
+  grid-template-columns: 17px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  margin: 10px 0 0;
+
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.stores-info-symbol {
+  font-family: Arial, sans-serif;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.stores-info-row a {
+  color: inherit;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.stores-info-row a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Map stays near the top, as in the reference design. */
+
+.stores-map-panel {
+  width: 100%;
+  margin: -73px 0 0;
+}
+
+.stores-map-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+  .stores-directory-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .stores-location-card {
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 16px;
+    padding: 18px;
+    border-radius: 28px;
+  }
+
+  .stores-location-photo {
+    width: 140px;
+    height: 160px;
+    border-radius: 18px;
+  }
+
+  .stores-location-details h3 {
+    font-size: 25px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+  .stores-hero {
+    min-height: 420px;
+  }
+
+  .stores-hero-content {
+    padding-top: 100px;
+  }
+
+  .stores-hero p {
+    font-size: 20px;
+  }
+
+  .stores-announcement {
+    min-height: 85px;
+  }
+
+  .stores-directory {
+    padding: 52px 20px 80px;
+  }
+
+  .stores-directory-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 560px;
+    margin-top: 40px;
+  }
+
+  .stores-map-panel {
+    grid-row: 1;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .stores-card-list {
+    gap: 24px;
+  }
+
+  .stores-location-card {
+    grid-template-columns: 160px minmax(0, 1fr);
+    min-height: 210px;
+  }
+
+  .stores-location-photo {
+    width: 160px;
+    height: 170px;
+  }
+}
+
+@media (max-width: 440px) {
+  .stores-directory {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .stores-location-card {
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 13px;
+    padding: 14px;
+    border-radius: 24px;
+  }
+
+  .stores-location-photo {
+    width: 112px;
+    height: 146px;
+    border-radius: 15px;
+  }
+
+  .stores-location-details h3 {
+    font-size: 23px;
+    margin-bottom: 12px;
+  }
+
+  .stores-info-row {
+    grid-template-columns: 14px minmax(0, 1fr);
+    gap: 6px;
+    font-size: 14px;
+  }
+
+  .stores-info-symbol {
+    font-size: 16px;
+  }
+
+  
+}
+.stores-hero::before {
+  background: none;
+}

@@ -1,0 +1,428 @@
+(() => {
+  "use strict";
+
+  const groups = [
+    {
+      id: "signatures",
+      title: "Signatures",
+      items: [
+        ["sunset", "Sunset Caramel Macchiato", "Balanced sweet and salty caramel coffee"],
+        ["moonlight", "Moonlight Choco Latte", "Dark chocolate with creamy milk"],
+        ["dreamy", "Dreamy Vanilla Latte", "Sweet and creamy vanilla coffee"],
+        ["spanish", "Spanish Latte", "Coffee with sweetened milk"]
+      ]
+    },
+    {
+      id: "iced-coffee",
+      title: "Iced Coffee",
+      items: [
+        ["cloudy", "Cloudy Mocha", "Sweet chocolatey coffee"],
+        ["pumpkin", "Pumpkin Spice", "Coffee with the flavors of pumpkin spice"],
+        ["biscoff", "Dulce Biscoff Brew", "Taste of biscoff blended with coffee"],
+        ["americano", "Midnight Americano", "Bold and smoky black coffee"]
+      ]
+    },
+    {
+      id: "non-coffee",
+      title: "Non - Coffee",
+      items: [
+        ["strawberry-milk", "Strawberry Milk", "Balanced of sweet, creamy, strawberry milk"],
+        ["matcha", "Matcha Serenity Latte", "Blend of earthy, sweet, and savory flavor"],
+        ["oreo", "Milky Oreo", "Balanced blend of sweet milk and oreo"],
+        ["matcha-berry", "Matcha - Berry Fushion", "Matcha blended with fruity strawberry"],
+        ["mango", "Mango Milk Delight", "Simple goodness of mango and milk"],
+        ["berry-blue", "Berry Blue Milk", "Blueberries blended with creamy milk"]
+      ]
+    },
+    {
+      id: "fruit-soda",
+      title: "Fruit Soda",
+      items: [
+        ["lychee", "Lychee Soda", "Lychee flavored soda"],
+        ["apple", "Apple Soda", "Apple flavored soda"],
+        ["strawberry-soda", "Strawberry Soda", "Strawberry flavored soda"],
+        ["blueberry", "Blueberry Soda", "Blueberry flavored soda"]
+      ]
+    },
+    {
+      id: "takoyaki",
+      title: "Takoyaki",
+      items: [
+        ["cheese", "Creamy Cheese", "Crispy outside, rich melted cheese inside"],
+        ["crabstick", "Flavorful Crabstick", "Savory seasoned crabstick in every bite"],
+        ["ham-veggies", "Ham & Veggies", "Smoky ham with fresh, crisp veggies"],
+        ["ham-cheese", "Ham & Cheese", "Savory ham with melted gooey cheese"],
+        ["crabstick-veggies", "Crabstick & Veggies", "Sweet crabstick with fresh, crunchy veggies"]
+      ]
+    }
+  ];
+
+  const products = new Map();
+  const imagePath = id => `assets/menu/${id}.png`;
+
+  const catalogue = document.querySelector("#menu-catalogue");
+  const dialog = document.querySelector("#menu-product-dialog");
+  const modalImage = document.querySelector("#menu-modal-image");
+  const modalTitle = document.querySelector("#menu-modal-title");
+  const modalDescription = document.querySelector("#menu-modal-description");
+  const modalSymbols = document.querySelector("#menu-modal-symbols");
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  function element(tag, className, text) {
+    const node = document.createElement(tag);
+
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+
+    return node;
+  }
+
+  /* Build all five categories and 23 product buttons. */
+
+  groups.forEach(group => {
+    const section = element("section", "menu-category");
+    section.id = group.id;
+    section.setAttribute("aria-labelledby", `${group.id}-title`);
+
+    const heading = element("h2", "", group.title);
+    heading.id = `${group.id}-title`;
+
+    const grid = element("div", "menu-product-grid");
+
+    group.items.forEach(([id, name, description]) => {
+      products.set(id, {
+        id,
+        name,
+        description,
+        category: group.id
+      });
+
+      const button = element("button", "menu-product");
+      button.type = "button";
+      button.id = `product-${id}`;
+      button.setAttribute("aria-label", `View ${name} details`);
+      button.setAttribute("aria-haspopup", "dialog");
+
+      const image = element("img", "menu-product-image");
+      image.src = imagePath(id);
+      image.alt = "";
+      image.width = 295;
+      image.height = 365;
+      image.loading = "lazy";
+
+      button.append(
+        image,
+        element("span", "menu-product-name", name)
+      );
+
+      button.addEventListener("click", () => openProduct(id));
+      grid.append(button);
+    });
+
+    section.append(heading, grid);
+    catalogue.append(section);
+  });
+
+  /* Product overlays */
+
+  function openProduct(id) {
+    const product = products.get(id);
+    if (!product) return;
+
+    modalTitle.textContent = product.name;
+    modalDescription.textContent = product.description;
+
+    modalImage.src = imagePath(id);
+    modalImage.alt = product.name;
+
+    dialog.dataset.transition = id === "lychee" ? "slide" : "fade";
+    dialog.dataset.food = String(product.category === "takoyaki");
+
+    modalSymbols.replaceChildren();
+
+    const prefix =
+      product.category === "takoyaki" ? "food" : "drink";
+
+    for (let i = 1; i <= 2; i += 1) {
+      const icon = element("img");
+      icon.src = imagePath(`${prefix}-symbol-${i}`);
+      icon.alt = "";
+      modalSymbols.append(icon);
+    }
+
+    // The Sunset overlay has an internal scroll-to-description action.
+    modalDescription.onclick = id === "sunset"
+      ? () => modalDescription.scrollIntoView({
+          block: "nearest",
+          behavior: "instant"
+        })
+      : null;
+
+    if (!dialog.open) dialog.showModal();
+
+    dialog.scrollTop = 0;
+    document.body.classList.add("menu-dialog-open");
+  }
+
+  document
+    .querySelector("#menu-modal-close")
+    .addEventListener("click", () => dialog.close());
+
+  dialog.addEventListener("close", () => {
+    document.body.classList.remove("menu-dialog-open");
+  });
+
+  // Escape is handled by the native dialog.
+  // Clicking the backdrop also closes it.
+  dialog.addEventListener("click", event => {
+    if (event.target !== dialog) return;
+
+    const bounds = dialog.getBoundingClientRect();
+
+    const inside =
+      event.clientX >= bounds.left &&
+      event.clientX <= bounds.right &&
+      event.clientY >= bounds.top &&
+      event.clientY <= bounds.bottom;
+
+    if (!inside) dialog.close();
+  });
+
+  /* Four-state featured carousel */
+
+  const featured = ["sunset", "moonlight", "dreamy", "spanish"];
+
+  const stage = document.querySelector("#menu-featured-stage");
+  const featureName = document.querySelector("#menu-featured-name");
+  const featureDescription = document.querySelector(
+    "#menu-featured-description"
+  );
+  const dots = document.querySelector("#menu-featured-dots");
+
+  let slide = 0;
+  let suppressClick = false;
+
+  function showSlide(nextIndex) {
+    const restoreStageFocus = stage.contains(document.activeElement);
+
+    slide = (nextIndex + featured.length) % featured.length;
+    stage.replaceChildren();
+
+    [-1, 0, 1].forEach(offset => {
+      const index =
+        (slide + offset + featured.length) % featured.length;
+
+      const id = featured[index];
+      const product = products.get(id);
+
+      const button = element(
+        "button",
+        `menu-featured-product${offset === 0 ? " is-center" : ""}`
+      );
+
+      button.type = "button";
+      button.setAttribute(
+        "aria-label",
+        offset === 0
+          ? `View ${product.name} details`
+          : `Show ${product.name}`
+      );
+
+      const image = element("img");
+      image.src = imagePath(id);
+      image.alt = "";
+      image.draggable = false;
+
+      button.append(image);
+
+      button.addEventListener("click", () => {
+        if (suppressClick) return;
+
+        if (offset === 0) {
+          openProduct(id);
+        } else {
+          showSlide(slide + offset);
+        }
+      });
+
+      stage.append(button);
+    });
+
+    const current = products.get(featured[slide]);
+
+    featureName.textContent = current.name;
+    featureDescription.textContent = current.description;
+
+    [...dots.children].forEach((dot, index) => {
+      dot.setAttribute("aria-pressed", String(index === slide));
+    });
+
+    if (restoreStageFocus) {
+      stage.querySelector(".is-center").focus({
+        preventScroll: true
+      });
+    }
+  }
+
+  featured.forEach((id, index) => {
+    const dot = element("button", "menu-dot");
+    dot.type = "button";
+    dot.setAttribute(
+      "aria-label",
+      `Show ${products.get(id).name}`
+    );
+
+    dot.addEventListener("click", () => showSlide(index));
+    dots.append(dot);
+  });
+
+  document
+    .querySelector("#menu-featured-prev")
+    .addEventListener("click", () => showSlide(slide - 1));
+
+  document
+    .querySelector("#menu-featured-next")
+    .addEventListener("click", () => showSlide(slide + 1));
+
+  document
+    .querySelector("#menu-featured")
+    .addEventListener("keydown", event => {
+      if (
+        event.key !== "ArrowLeft" &&
+        event.key !== "ArrowRight"
+      ) return;
+
+      event.preventDefault();
+
+      showSlide(
+        slide + (event.key === "ArrowRight" ? 1 : -1)
+      );
+    });
+
+  /* Swipe support for touch and pointer input */
+
+  let pointerStart = null;
+
+  stage.addEventListener("pointerdown", event => {
+    if (!event.isPrimary || event.button !== 0) return;
+
+    pointerStart = {
+      x: event.clientX,
+      y: event.clientY
+    };
+  });
+
+  stage.addEventListener("pointercancel", () => {
+    pointerStart = null;
+  });
+
+  stage.addEventListener("pointerup", event => {
+    if (!pointerStart) return;
+
+    const dx = event.clientX - pointerStart.x;
+    const dy = event.clientY - pointerStart.y;
+
+    pointerStart = null;
+
+    if (
+      Math.abs(dx) < 45 ||
+      Math.abs(dx) <= Math.abs(dy)
+    ) return;
+
+    suppressClick = true;
+    showSlide(slide + (dx < 0 ? 1 : -1));
+
+    setTimeout(() => {
+      suppressClick = false;
+    }, 0);
+  });
+
+  stage.addEventListener("dragstart", event => {
+    event.preventDefault();
+  });
+
+  showSlide(0);
+
+  /* 300ms category scrolling, matching the prototype timing */
+
+  let scrollAnimation = 0;
+
+  function cancelScroll() {
+    cancelAnimationFrame(scrollAnimation);
+  }
+
+  ["wheel", "touchstart", "pointerdown"].forEach(type => {
+    window.addEventListener(type, cancelScroll, {
+      passive: true
+    });
+  });
+
+  window.addEventListener("keydown", event => {
+    if (
+      [
+        "ArrowDown",
+        "ArrowUp",
+        "PageDown",
+        "PageUp",
+        "Home",
+        "End",
+        " "
+      ].includes(event.key)
+    ) cancelScroll();
+  });
+
+  document
+    .querySelectorAll("[data-menu-scroll]")
+    .forEach(link => {
+      link.addEventListener("click", event => {
+        const target = document.querySelector(
+          link.getAttribute("href")
+        );
+
+        if (!target) return;
+
+        event.preventDefault();
+        cancelScroll();
+
+        const start = window.scrollY;
+
+        const destination = Math.max(
+          0,
+          Math.min(
+            start + target.getBoundingClientRect().top - 24,
+            document.documentElement.scrollHeight -
+              window.innerHeight
+          )
+        );
+
+        if (reducedMotion.matches) {
+          window.scrollTo({
+            top: destination,
+            behavior: "instant"
+          });
+          return;
+        }
+
+        const began = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - began) / 300, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          window.scrollTo({
+            top: start + (destination - start) * eased,
+            behavior: "instant"
+          });
+
+          if (progress < 1) {
+            scrollAnimation = requestAnimationFrame(tick);
+          }
+        }
+
+        scrollAnimation = requestAnimationFrame(tick);
+      });
+    });
+})();
