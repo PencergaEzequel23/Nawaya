@@ -19,19 +19,24 @@
 
 
 <link rel="stylesheet" href="nwc-fixed.css?v=2">
+<link rel="stylesheet" href="nawaya-nav-reviews.css">
 </head>
 
 <body>
-  <header class="site-header">
-    <a class="wordmark" href="#home">Nawaya Coffee</a>
+  <header class="site-header nw-nav">
+  <a class="wordmark nw-wordmark" href="index.html"
+    data-nw-page="fade">Nawaya Coffee</a>
 
-    <nav aria-label="Main navigation">
-      <a href="menu.html">Menu</a>
-      <a href="#stores">Stores</a>
-      <a href="our-story.html">Our Story</a>
-      <a href="contact.html">Contact Us</a>
-    </nav>
-  </header>
+  <button class="nw-menu-toggle" type="button"
+    aria-controls="nw-main-nav" aria-expanded="false">Menu</button>
+
+  <nav class="nw-navlinks" id="nw-main-nav" aria-label="Main navigation">
+    <a href="menu.html" data-nw-page="fade">Menu</a>
+    <a href="stores.html" data-nw-page="instant">Stores</a>
+    <a href="our-story.html" data-nw-page="fade">Our Story</a>
+    <a href="contact.html" data-nw-page="fade">Contact Us</a>
+  </nav>
+</header>
 
   <main>
     <section class="hero" id="home" aria-labelledby="hero-title">
@@ -216,5 +221,6 @@
 
 <script src="nwc-fixed.js?v=2" defer></script>
 <script src="nawaya-story-hover.js" defer></script>
+<script src="nawaya-nav-reviews.js" defer></script>
 </body>
 </html>

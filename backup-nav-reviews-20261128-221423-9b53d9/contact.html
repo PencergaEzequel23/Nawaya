@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prepare an event enquiry for Nawaya Coffee carts.">
+  <title>Contact Us | Nawaya Coffee</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link id="nawaya-contact-css" rel="stylesheet" href="contact.css">
+  <script id="nawaya-contact-js" src="contact.js" defer></script>
+</head>
+
+<body class="contact-page">
+  <header class="site-header">
+    <a class="wordmark" href="index.html">Nawaya Coffee</a>
+    <nav aria-label="Main navigation">
+      <a href="menu.html">Menu</a>
+      <a href="stores.html">Stores</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="contact.html" aria-current="page">Contact Us</a>
+    </nav>
+  </header>
+
+  <main class="contact-main">
+    <section class="contact-intro" aria-labelledby="contact-title">
+      <h1 id="contact-title">Book Nawaya for<br>your events!</h1>
+      <p>
+        Elevate your special day with a Nawaya Cart!
+        Fill out the form to explore our celebration packages.
+      </p>
+    </section>
+
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="contact-field">
+        <label for="contact-name">*Full Name</label>
+        <input
+          id="contact-name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          placeholder="Enter Full Name"
+          maxlength="200"
+          required
+        >
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-email">*Email Address</label>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="Enter Email Address"
+          maxlength="254"
+          required
+        >
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-phone">*Phone Number</label>
+        <input
+          id="contact-phone"
+          name="phone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          placeholder="Enter Phone Number"
+          maxlength="40"
+          required
+        >
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-occasion">*Occasion</label>
+        <input
+          id="contact-occasion"
+          name="occasion"
+          type="text"
+          placeholder="Enter Occasion"
+          maxlength="150"
+          required
+        >
+      </div>
+
+      <div class="contact-field">
+        <label for="contact-details">*Tell us more about your event!</label>
+        <textarea
+          id="contact-details"
+          name="details"
+          placeholder="Tell us more....."
+          maxlength="4000"
+          rows="2"
+          required
+        ></textarea>
+      </div>
+
+      <div class="contact-submit-row">
+        <button class="contact-pill" id="contact-send" type="submit" disabled>
+          Send Message
+        </button>
+      </div>
+
+      <p class="contact-form-note">
+        Prepare your enquiry here, then send it through our Facebook page.
+      </p>
+    </form>
+
+    <p
+      class="contact-status"
+      id="contact-status"
+      role="status"
+      aria-live="polite"
+    ></p>
+
+    <section
+      class="contact-result"
+      id="contact-result"
+      aria-labelledby="contact-result-title"
+      hidden
+    >
+      <h2 id="contact-result-title">Your event enquiry</h2>
+      <p>This message has not been sent yet.</p>
+
+      <textarea
+        id="contact-preview"
+        aria-label="Prepared event enquiry"
+        rows="10"
+        readonly
+      ></textarea>
+
+      <div class="contact-result-actions">
+        <button class="contact-pill" id="contact-copy" type="button">
+          Copy Message
+        </button>
+
+        <a
+          class="contact-pill"
+          href="https://www.facebook.com/profile.php?id=61585303635196"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Open Facebook to Send</a>
+
+        <button class="contact-outline" id="contact-save" type="button">
+          Save Enquiry
+        </button>
+      </div>
+    </section>
+
+    <noscript>
+      <p class="contact-form-note">
+        Enable JavaScript to prepare an enquiry, or
+        <a href="https://www.facebook.com/profile.php?id=61585303635196">
+          contact Nawaya Coffee on Facebook
+        </a>.
+      </p>
+    </noscript>
+
+    <section class="contact-carts" aria-labelledby="contact-carts-title">
+      <h2 id="contact-carts-title">Nawaya Carts</h2>
+
+      <div class="contact-cart-grid">
+        <img
+          src="assets/contact/cart-1.png"
+          alt="Nawaya Coffee cart beneath an outdoor umbrella"
+          width="357"
+          height="515"
+          loading="lazy"
+        >
+        <img
+          src="assets/contact/cart-2.png"
+          alt="Nawaya Coffee cart with an illuminated front sign"
+          width="379"
+          height="506"
+          loading="lazy"
+        >
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <a class="footer-brand" href="index.html">NAWAYA<br>COFFEE</a>
+
+      <nav aria-label="Footer navigation">
+        <a href="menu.html">Menu</a>
+        <a href="stores.html">Stores</a>
+        <a href="our-story.html">About Us</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+
+      <div class="footer-news">
+        <h2>NAWAYA News</h2>
+        <p>Stay updated with the latest.</p>
+        <a href="news.html">Read Now</a>
+      </div>
+    </div>
+
+    <p class="copyright">© Nawaya Coffee all rights reserved</p>
+  </footer>
+</body>
+</html>

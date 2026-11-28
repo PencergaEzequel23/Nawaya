@@ -11,27 +11,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="our-story.css">
-  <script src="our-story.js" defer></script>
+  
+<link rel="stylesheet" href="nawaya-nav-reviews.css">
 </head>
 
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <a class="wordmark" href="index.html">Nawaya Coffee</a>
+  <header class="site-header nw-nav">
+  <a class="wordmark nw-wordmark" href="index.html"
+    data-nw-page="fade">Nawaya Coffee</a>
 
-    <button class="menu-toggle" type="button"
-      aria-controls="main-nav" aria-expanded="false">
-      Menu
-    </button>
+  <button class="nw-menu-toggle" type="button"
+    aria-controls="nw-main-nav" aria-expanded="false">Menu</button>
 
-    <nav class="navlinks" id="main-nav" aria-label="Main navigation">
-      <a href="menu.html">Menu</a>
-      <a href="stores.html">Stores</a>
-      <a href="our-story.html" aria-current="page">Our Story</a>
-      <a href="contact.html">Contact Us</a>
-    </nav>
-  </header>
+  <nav class="nw-navlinks" id="nw-main-nav" aria-label="Main navigation">
+    <a href="menu.html" data-nw-page="fade">Menu</a>
+    <a href="stores.html" data-nw-page="instant">Stores</a>
+    <a href="our-story.html" data-nw-page="fade">Our Story</a>
+    <a href="contact.html" data-nw-page="fade">Contact Us</a>
+  </nav>
+</header>
 
   <main id="main" tabindex="-1">
     <section class="intro" aria-labelledby="intro-title">
@@ -190,5 +190,6 @@
 
     <p class="copyright">&copy;Nawaya Coffee all rights reserved</p>
   </footer>
+<script src="nawaya-nav-reviews.js" defer></script>
 </body>
 </html>

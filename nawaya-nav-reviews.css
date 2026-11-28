@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@400&family=Afacad+Flux:wght@400;700&family=Inter:wght@400;700&display=swap');
+
+.site-header.nw-nav {
+  position: relative;
+  min-height: 97px;
+  height: auto;
+  padding: 24px 8.75% 24px 7.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  background: #141212;
+  color: #fff;
+}
+.nw-nav .nw-wordmark {
+  font: 400 24px/32px Afacad, Arial, sans-serif;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nw-nav .nw-navlinks {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+.nw-nav .nw-navlinks a {
+  font: 400 20px/27px Afacad, Arial, sans-serif;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nw-nav .nw-navlinks a:nth-child(-n+2) {
+  font-family: 'Afacad Flux', Arial, sans-serif;
+}
+.nw-nav .nw-navlinks a:hover,
+.nw-nav .nw-navlinks a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.nw-nav a:focus-visible,
+.nw-nav button:focus-visible {
+  outline: 3px solid #d1a16f;
+  outline-offset: 5px;
+}
+.nw-nav .nw-menu-toggle {
+  display: none;
+  border: 1px solid #888;
+  border-radius: 6px;
+  padding: 9px 14px;
+  background: transparent;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+html.nw-page-leave main {
+  opacity: 0;
+  transition: opacity .3s ease-out;
+}
+
+.reviews.nw-reviews {
+  box-sizing: border-box;
+  min-height: 581px;
+  padding: 67px 0 40px;
+  background: white;
+  color: #3b2314;
+  overflow: hidden;
+}
+.nw-reviews > h2 {
+  margin: 0;
+  padding: 0 24px;
+  text-align: center;
+  color: #70492d;
+  font: 700 48px/64px 'Afacad Flux', Arial, sans-serif;
+  text-transform: uppercase;
+}
+.nw-reviews .review-track {
+  position: relative;
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  margin: 78px 0 0;
+  padding: 14px 0 30px;
+  scroll-snap-type: none;
+  scrollbar-width: thin;
+  scrollbar-color: #cfbba6 transparent;
+}
+.nw-reviews .nw-review-rail {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: max-content;
+  animation: nw-review-roll 10s linear infinite;
+  will-change: transform;
+}
+.nw-reviews .review-card {
+  box-sizing: border-box;
+  flex: 0 0 400px;
+  width: 400px;
+  min-height: 220px;
+  margin: 0 140px 0 0;
+  padding: 24px;
+  background: rgba(247, 241, 232, .8);
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px #3b231414;
+  scroll-snap-align: none;
+  color: #3b2314;
+  font-family: Inter, Arial, sans-serif;
+}
+.nw-reviews .review-card:nth-child(5n+3),
+.nw-reviews .review-card:nth-child(5n) {
+  margin-right: 128px;
+}
+.nw-reviews .nw-review-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 36px;
+}
+.nw-reviews .stars {
+  flex-shrink: 0;
+  color: #aa702c;
+  font: 18px/1 Arial, sans-serif;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.nw-reviews .nw-review-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.nw-reviews .nw-review-avatar {
+  display: block;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.nw-reviews .nw-review-person h3 {
+  margin: 0;
+  color: #3b2314;
+  font: 700 14px/18px Inter, Arial, sans-serif;
+}
+.nw-reviews .nw-review-person p {
+  margin: 2px 0 0;
+  color: #8b5e3c;
+  font: 400 12px/16px Inter, Arial, sans-serif;
+}
+.nw-reviews .review-card blockquote {
+  margin: 16px 0 0;
+  font: 400 18px/28px Inter, Arial, sans-serif;
+  color: #3b2314;
+}
+.nw-reviews .nw-review-toggle {
+  display: block;
+  min-height: 40px;
+  margin: 20px auto 0;
+  padding: 8px 20px;
+  border: 1px solid #b6a38f;
+  border-radius: 99px;
+  background: #faf6f0;
+  color: #3b2314;
+  font: inherit;
+  cursor: pointer;
+}
+.nw-reviews .nw-review-toggle:focus-visible,
+.nw-reviews .review-track:focus-visible {
+  outline: 3px solid #a46e36;
+  outline-offset: -3px;
+}
+.nw-reviews[data-nw-paused="true"] .nw-review-rail,
+.nw-reviews[data-nw-hidden="true"] .nw-review-rail,
+.nw-reviews .review-track:focus-within .nw-review-rail {
+  animation-play-state: paused;
+}
+.nw-reviews[data-nw-reduced="true"] .nw-review-rail {
+  animation: none;
+  transform: none;
+}
+@keyframes nw-review-roll {
+  to {
+    transform: translateX(calc(-1 * var(--nw-review-shift, 2146px)));
+  }
+}
+@media (hover: hover) {
+  .nw-reviews .review-track:hover .nw-review-rail {
+    animation-play-state: paused;
+  }
+}
+@media (max-width: 1050px) {
+  .nw-nav .nw-navlinks { gap: 24px; }
+}
+@media (max-width: 720px) {
+  .site-header.nw-nav {
+    padding: 20px 6%;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .nw-nav .nw-menu-toggle { display: block; }
+  .nw-nav .nw-navlinks {
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nw-nav .nw-navlinks a { padding: 12px 0; }
+  .nw-nav .nw-navlinks[data-open="false"] { display: none; }
+
+  .nw-reviews > h2 {
+    font-size: 36px;
+    line-height: 44px;
+  }
+  .reviews.nw-reviews {
+    min-height: 500px;
+    padding-top: 48px;
+  }
+  .nw-reviews .review-track { margin-top: 48px; }
+  .nw-reviews .review-card {
+    flex-basis: min(400px, calc(100vw - 48px));
+    width: min(400px, calc(100vw - 48px));
+    margin-right: 24px !important;
+  }
+  .nw-reviews .nw-review-head { gap: 10px; }
+  .nw-reviews .nw-review-profile { gap: 8px; }
+  .nw-reviews .stars {
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+  .nw-reviews .review-card blockquote {
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.nw-page-leave main { transition: none; }
+}
+/* NW-STICKY-START */
+:root {
+  --nw-header-height: 97px;
+  --nw-category-height: 0px;
+}
+
+html {
+  scroll-padding-top: calc(var(--nw-header-height) + 16px) !important;
+}
+
+header.site-header,
+header.site-header.nw-nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+header.site-header.nw-sticky-scrolled {
+  box-shadow: 0 4px 16px rgb(0 0 0 / 22%);
+}
+
+body #menu-categories.menu-categories {
+  position: sticky !important;
+  top: var(--nw-header-height) !important;
+  z-index: 900 !important;
+}
+
+.menu-page .menu-category,
+.menu-page .menu-product {
+  scroll-margin-top: var(--nw-category-height) !important;
+}
+/* NW-STICKY-END */

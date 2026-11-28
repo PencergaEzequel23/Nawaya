@@ -228,12 +228,11 @@
 
       target.focus({ preventScroll: true });
 
-      const offset =
-        (
+      const offset = /* nw-sticky-offset */ (document.querySelector(".site-header")?.getBoundingClientRect().height || 0) + ((
           document.getElementById(
             'menu-categories'
           )?.getBoundingClientRect().height || 0
-        ) + 16;
+        ) + 16);
 
       scrollTo({
         top: Math.max(

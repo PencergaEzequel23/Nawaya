@@ -1,0 +1,70 @@
+.menu-page #menu-catalogue .menu-product-grid {
+  align-items: start;
+}
+
+.menu-page #menu-catalogue .menu-product {
+  height: auto;
+  align-self: start;
+}
+
+.menu-page #menu-catalogue .nw-menu-visual {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: min(295px, 100%);
+  aspect-ratio: 295 / 365;
+  overflow: hidden;
+  border-radius: 32px;
+  background: transparent;
+  transition: background-color .3s ease-out;
+}
+
+.menu-page #menu-catalogue .nw-menu-visual .menu-product-image {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  object-fit: contain !important;
+  transform: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.menu-page #menu-catalogue .menu-product.is-expanded .nw-menu-visual,
+.menu-page #menu-catalogue .menu-product[aria-expanded="true"] .nw-menu-visual {
+  background: #fff !important;
+}
+
+.menu-page #menu-catalogue .menu-product.nw-menu-food.is-expanded .nw-menu-visual,
+.menu-page #menu-catalogue .menu-product.nw-menu-food[aria-expanded="true"] .nw-menu-visual {
+  background: #fff0ef !important;
+}
+
+.menu-page #menu-catalogue .menu-product-name,
+.menu-page #menu-catalogue .menu-inline-details {
+  color: white;
+}
+
+.menu-page .menu-category-links a[aria-current="true"] {
+  background: white !important;
+  color: #141311 !important;
+  border-color: white !important;
+}
+
+@media (max-width: 650px) {
+  .menu-page #menu-catalogue .nw-menu-visual {
+    border-radius: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-page #menu-catalogue .nw-menu-visual {
+    transition: none;
+  }
+}

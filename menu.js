@@ -635,10 +635,7 @@
 
     const start = window.scrollY;
 
-    const stickyOffset =
-      target === categoryBar
-        ? 0
-        : categoryBar.getBoundingClientRect().height + 16;
+    const stickyOffset = /* nw-sticky-offset */ (document.querySelector(".site-header")?.getBoundingClientRect().height || 0) + (target === categoryBar ? 0 : categoryBar.getBoundingClientRect().height + 16);
 
     const maximumScroll = Math.max(
       0,
